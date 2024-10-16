@@ -1,0 +1,13 @@
+<section w-full>
+  <!-- row 1 -->
+
+  <div class="square-container h-48" *ngFor="let square of gameService.board">
+    <div
+      class="game-square rounded-lg border bg-red-500 shadow-md"
+      (click)="changePlayer(square)"
+    >
+      x
+      <p class="text-grey-darker">{{ square.state }}</p>
+    </div>
+  </div>
+</section>
