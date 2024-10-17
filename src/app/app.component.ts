@@ -89,6 +89,7 @@ export class AppComponent {
     this.dialog.open(UserDialogComponent, {
       height: '400px',
       width: '600px',
+      data: { title: 'Scoreboard', showScoreboard: true }, // Pass your input value here
     });
   }
 }

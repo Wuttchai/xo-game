@@ -1,7 +1,7 @@
 <!-- src/app/user-dialog/user-dialog.component.html -->
-<h2 mat-dialog-title>Scoreboard</h2>
+<h2 mat-dialog-title>{{ data.title }}</h2>
 <mat-dialog-content>
-  <app-scoreboard></app-scoreboard>
+  <app-scoreboard *ngIf="data.showScoreboard"></app-scoreboard>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click)="closeDialog()">Close</button>
