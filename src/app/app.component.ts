@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { GameService } from './services/game.service';
 import { ApiService } from './services/api.service';
-import { GetScoreboard } from './services/interfaces/get-scoreboard.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { UserDialogComponent } from './user-dialog/user-dialog.component';
+//import { OAuthService } from 'angular-oauth2-oidc';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,11 +11,33 @@ import { UserDialogComponent } from './user-dialog/user-dialog.component';
 })
 export class AppComponent {
   title = 'xo-game';
+  userID = '1';
   constructor(
     public gameService: GameService,
     public apiService: ApiService, // private authGoogleServiceService: AuthGoogleServiceService
     private dialog: MatDialog
-  ) {}
+  ) {
+    //this.configure();
+  }
+  /* ngOnInit() {
+    this.oauthService.loadDiscoveryDocumentAndTryLogin();
+  }
+  configure() {
+    this.oauthService.configure({
+      // Replace with your OAuth provider details
+      issuer: 'https://accounts.google.com/o/oauth2/auth',
+      redirectUri: window.location.origin + '/index.html',
+      clientId:
+        '453277300843-mo7001dct2lpi28ao2q6ftk7c0j9tth1.apps.googleusercontent.com',
+      scope: 'openid profile email',
+      responseType: 'code',
+      requireHttps: true, // Set to false if you're testing locally over HTTP
+    });
+  } 
+  login() {
+    this.oauthService.initImplicitFlow(); // or initCodeFlow() for Authorization Code flow
+    console.log(this.oauthService.hasValidAccessToken());
+  }*/
   resetGame() {
     this.gameService.newGame();
   }
@@ -51,7 +73,7 @@ export class AppComponent {
   }
   sendData(point: number) {
     const data = {
-      userID: '1',
+      userID: this.userID,
       point: point,
     };
 
@@ -73,17 +95,12 @@ export class AppComponent {
     const random = Math.floor(Math.random() * getBoard.length);
 
     var rand = getBoard[(Math.random() * getBoard.length) | 0];
-    console.log(rand);
 
     const botSquare = {
       id: rand.id,
       state: 'O',
     };
     this.gameService.changePlayerTurn(botSquare);
-  }
-
-  signIn() {
-    // this.authGoogleServiceService.initLoginFlow();
   }
   openDialog() {
     this.dialog.open(UserDialogComponent, {

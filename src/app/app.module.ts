@@ -12,7 +12,7 @@ import { MatTableModule } from '@angular/material/table';
 import { ScoreboardComponent } from './scoreboards/scoreboard.component';
 import { UserDialogComponent } from './user-dialog/user-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
-//import { OAuthModule } from 'angular-oauth2-oidc';
+import { OAuthModule } from 'angular-oauth2-oidc';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +28,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     BrowserAnimationsModule,
     MatTableModule,
     MatDialogModule,
+    OAuthModule.forRoot(),
   ],
   providers: [GameService],
   bootstrap: [AppComponent],
